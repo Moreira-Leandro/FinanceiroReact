@@ -1,6 +1,5 @@
 
 import { useState } from 'react'
-import './Components/Modal'
 import Modal from './Components/Modal'
 import TransacaoForm from './Components/TransacaoForm'
 
@@ -11,9 +10,7 @@ const tipos = {
 
 function App() {
 
-  const [modalAberto, setModalAberto] = useState(null); // null | 'gasto' | 'ganho'
-  const [gastoList, setGastoList] = useState([]);
-  const [ganhoList, setGanhoList] = useState([]);
+  const [modalAberto, setModalAberto] = useState(null);
 
   function adicionarGasto(nome, valor, categoria) {
     setGastoList([...gastoList, { nome, valor, categoria }]);
@@ -32,14 +29,14 @@ function App() {
 
       {modalAberto === 'gasto' && (
         <Modal titulo={tipos.gasto.titulo} onFechar={fecharModal}>
-          <TransacaoForm rotulo="gasto" categorias={tipos.gasto.categorias}
+          <TransacaoForm rotulo="tipos.gasto.rotulo" categorias={tipos.gasto.categorias}
             onSalvar={adicionarGasto} onFechar={fecharModal} />
         </Modal>
       )}
 
       {modalAberto === 'ganho' && (
         <Modal titulo={tipos.ganho.titulo} onFechar={fecharModal}>
-          <TransacaoForm rotulo="ganho" categorias={tipos.ganho.categorias}
+          <TransacaoForm rotulo="tipos.ganho.rotulo" categorias={tipos.ganho.categorias}
             onSalvar={adicionarGanho} onFechar={fecharModal} />
         </Modal>
       )}
