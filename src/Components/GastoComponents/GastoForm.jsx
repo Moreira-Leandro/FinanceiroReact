@@ -7,6 +7,7 @@ export default function GastoForm({adicionarGasto, fecharModal}) {
     const [categoriaGasto, setCategoriaGasto] = useState('');
 
     function addGasto() {
+        event.preventDefault();
 
         adicionarGasto(nomeGasto, valorGasto, categoriaGasto)
 

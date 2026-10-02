@@ -1,17 +1,19 @@
 
 import { useState } from 'react'
-import './Components/GastoService'
-import GastoService from './Components/GastoService'
+import GanhoContainer from './Components/GanhoComponents/GanhoContainer';
+import GastoContainer from './Components/GastoComponents/GastoContainer';
 
 function App() {
 
-  const[modalStatus, setModalStatus] = useState(false);
+  const[modalStatus, setModalStatus] = useState(null);
 
   return (
     <>
-      <button onClick={() => setModalStatus(true)}>Adicionar gasto</button>
+      <button onClick={() => setModalStatus('gasto')}>Adicionar gasto</button>
+      <button onClick={() => setModalStatus('ganho')}>Adicionar ganho</button>
 
-      {modalStatus && <GastoService fecharModal={() => setModalStatus(false)}/>}
+      {modalStatus == 'gasto' && <GastoContainer fecharModal={() => setModalStatus(null)}/>}
+      {modalStatus == 'ganho' && <GanhoContainer fecharModal={() => setModalStatus(null)}/>}
     </>
 
   )

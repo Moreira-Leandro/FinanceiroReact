@@ -5,7 +5,7 @@ import GastoForm from './GastoForm';
 
 const gastos = [{}]
 
-export default function GastoService({fecharModal}) {
+export default function GastoContainer({fecharModal}) {
 
     const[gastoList, setGastoList] = useState(gastos);
 
@@ -16,7 +16,7 @@ export default function GastoService({fecharModal}) {
             categoria: categoria
         }
 
-        setGastoList([...gasto, novoGasto]);
+        setGastoList([...gastoList, novoGasto]);
 
     }
 
