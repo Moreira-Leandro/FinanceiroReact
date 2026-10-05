@@ -7,7 +7,7 @@ export async function ListarTransacoes(tipo) {
     return resposta.json();
 }
 
-export async function AdicionarTransacao(tipos, dados) {
+export async function AdicionarTransacao(tipo, dados) {
     const resposta = await fetch(
         `${api_url}/${tipo}`,
         {
