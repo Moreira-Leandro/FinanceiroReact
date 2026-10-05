@@ -1,10 +1,10 @@
 
 import { useState } from "react";
 
-export default function TransacaoForm({rotulo, categorias, onSalvar, onFechar}) {
-    const [nome, setNome] = useState('');
-    const [valor, setValor] = useState('');
-    const [categoria, setCategoria] = useState('');
+export default function TransacaoForm({rotulo, categorias, onSalvar, onFechar, inicial}) {
+    const [nome, setNome] = useState(inicial?.nome ?? '');
+    const [valor, setValor] = useState(inicial?.valor ?? '');
+    const [categoria, setCategoria] = useState(inicial?.categoria ?? '');
 
     function salvar(event) {
         event.preventDefault();

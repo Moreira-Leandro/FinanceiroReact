@@ -21,7 +21,7 @@ export async function AdicionarTransacao(tipo, dados) {
 }
 
 export async function RemoverTransacao(tipo, id) {
-    const resposta = await fetch(
+    await fetch(
         `${api_url}/${tipo}/${id}`,
         {
             method: 'DELETE'
@@ -29,3 +29,14 @@ export async function RemoverTransacao(tipo, id) {
     )
 }
 
+export async function AtualizarTransacao(tipo, id, dados) {
+    const resposta = await fetch(
+        `${api_url}/${tipo}/${id}`,
+        {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(dados)
+        }
+    )
+    return resposta.json();
+}
