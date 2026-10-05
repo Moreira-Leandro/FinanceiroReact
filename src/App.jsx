@@ -1,7 +1,7 @@
-
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Modal from './Components/Modal'
 import TransacaoForm from './Components/TransacaoForm'
+import {AdicionarTransacao, ListarTransacoes} from './Service/TransacaoService'
 
 const tipos = {
   gasto: { titulo: 'Cadastrar gasto', rotulo: 'gasto', categorias: ['Alimentação', 'Contas Fixas'] },
@@ -11,13 +11,22 @@ const tipos = {
 function App() {
 
   const [modalAberto, setModalAberto] = useState(null);
+  const [ganhoList, setGanhoList] = useState([]);
+  const [gastoList, setGastoList] = useState([]);
 
-  function adicionarGasto(nome, valor, categoria) {
-    setGastoList([...gastoList, { nome, valor, categoria }]);
+  useEffect(() => {
+    ListarTransacoes('gastos').then(setGastoList);
+    ListarTransacoes('ganhos').then(setGanhoList);
+  }, []);
+
+  async function adicionarGasto(nome, valor, categoria) {
+    const novo = await AdicionarTransacao('gastos', {nome, valor, categoria});
+    setGastoList([...gastoList, novo]);
   }
 
-  function adicionarGanho(nome, valor, categoria) {
-    setGanhoList([...ganhoList, { nome, valor, categoria }]);
+  async function adicionarGanho(nome, valor, categoria) {
+    const novo = await AdicionarTransacao('ganhos', {nome, valor, categoria});
+    setGanhoList([...ganhoList, novo]);
   }
 
   const fecharModal = () => setModalAberto(null);
@@ -29,14 +38,14 @@ function App() {
 
       {modalAberto === 'gasto' && (
         <Modal titulo={tipos.gasto.titulo} onFechar={fecharModal}>
-          <TransacaoForm rotulo="tipos.gasto.rotulo" categorias={tipos.gasto.categorias}
+          <TransacaoForm rotulo={tipos.gasto.rotulo} categorias={tipos.gasto.categorias}
             onSalvar={adicionarGasto} onFechar={fecharModal} />
         </Modal>
       )}
 
       {modalAberto === 'ganho' && (
         <Modal titulo={tipos.ganho.titulo} onFechar={fecharModal}>
-          <TransacaoForm rotulo="tipos.ganho.rotulo" categorias={tipos.ganho.categorias}
+          <TransacaoForm rotulo={tipos.ganho.rotulo} categorias={tipos.ganho.categorias}
             onSalvar={adicionarGanho} onFechar={fecharModal} />
         </Modal>
       )}
