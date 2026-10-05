@@ -1,5 +1,5 @@
 
-export default function TransacaoLista({itens, onFechar, removerTransacao}) {    
+export default function TransacaoLista({itens, onFechar, removerTransacao, onEditar}) {    
     return (
         <>
             <div className="modal-body">
@@ -9,6 +9,7 @@ export default function TransacaoLista({itens, onFechar, removerTransacao}) {
                             <span>{item.nome} - ({item.categoria})</span>
                             <span>R$: {item.valor}</span>
                             <button onClick={() => removerTransacao(item.id)}>Excluir</button>
+                            <button onClick={() => onEditar(item)}>Editar</button>
                         </li>
                     ))}
                 </ul>
