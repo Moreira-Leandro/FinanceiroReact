@@ -20,3 +20,12 @@ export async function AdicionarTransacao(tipo, dados) {
     return resposta.json();
 }
 
+export async function RemoverTransacao(tipo, id) {
+    const resposta = await fetch(
+        `${api_url}/${tipo}/${id}`,
+        {
+            method: 'DELETE'
+        }
+    )
+}
+

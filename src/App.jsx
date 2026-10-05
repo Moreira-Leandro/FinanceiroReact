@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Modal from './Components/Modal'
 import TransacaoForm from './Components/TransacaoForm'
-import {AdicionarTransacao, ListarTransacoes} from './Service/TransacaoService'
+import {AdicionarTransacao, ListarTransacoes, RemoverTransacao} from './Service/TransacaoService'
 import TransacaoLista from './Components/TransacaoLista'
 
 const tipos = {
@@ -28,6 +28,16 @@ function App() {
   async function adicionarGanho(nome, valor, categoria) {
     const novo = await AdicionarTransacao('ganhos', {nome, valor, categoria});
     setGanhoList([...ganhoList, novo]);
+  }
+
+  async function removerGasto(id) {
+    const novo = await RemoverTransacao('gastos', id)
+    setGastoList(gastoList.filter((item) => item.id != id))
+  }
+
+  async function removerGanho(id) {
+    const novo = await RemoverTransacao('ganhos', id)
+    setGanhoList(ganhoList.filter((item) => item.id != id))
   }
 
   const fecharModal = () => setModalAberto(null);
@@ -57,7 +67,7 @@ function App() {
       {
         modalAberto === 'listar-ganho' && (
           <Modal titulo={tipos.ganho.titulo} onFechar={fecharModal}>
-            <TransacaoLista itens={ganhoList} onFechar={fecharModal}/>
+            <TransacaoLista itens={ganhoList} onFechar={fecharModal} removerTransacao={removerGanho}/>
           </Modal>
         )
       }
@@ -65,7 +75,7 @@ function App() {
       {
         modalAberto === 'listar-gasto' && (
           <Modal titulo={tipos.gasto.titulo} onFechar={fecharModal}>
-            <TransacaoLista itens={gastoList} onFechar={fecharModal}/>
+            <TransacaoLista itens={gastoList} onFechar={fecharModal} removerTransacao={removerGasto}/>
           </Modal>
         )
       }

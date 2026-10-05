@@ -1,5 +1,5 @@
 
-export default function TransacaoLista({itens, onFechar}) {    
+export default function TransacaoLista({itens, onFechar, removerTransacao}) {    
     return (
         <>
             <div className="modal-body">
@@ -8,6 +8,7 @@ export default function TransacaoLista({itens, onFechar}) {
                         <li key={item.id} className="list-group-item d-flex justify-content-between">
                             <span>{item.nome} - ({item.categoria})</span>
                             <span>R$: {item.valor}</span>
+                            <button onClick={() => removerTransacao(item.id)}>Excluir</button>
                         </li>
                     ))}
                 </ul>
