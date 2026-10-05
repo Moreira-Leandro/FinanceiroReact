@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Modal from './Components/Modal'
 import TransacaoForm from './Components/TransacaoForm'
 import {AdicionarTransacao, ListarTransacoes} from './Service/TransacaoService'
+import TransacaoLista from './Components/TransacaoLista'
 
 const tipos = {
   gasto: { titulo: 'Cadastrar gasto', rotulo: 'gasto', categorias: ['Alimentação', 'Contas Fixas'] },
@@ -33,22 +34,41 @@ function App() {
 
   return (
     <>
-      <button onClick={() => setModalAberto('gasto')}>Adicionar gasto</button>
-      <button onClick={() => setModalAberto('ganho')}>Adicionar ganho</button>
+      <button onClick={() => setModalAberto('cadastrar-gasto')}>Adicionar gasto</button>
+      <button onClick={() => setModalAberto('cadastrar-ganho')}>Adicionar ganho</button>
+      <button onClick={() => setModalAberto('listar-gasto')}>Listar gasto</button>
+      <button onClick={() => setModalAberto('listar-ganho')}>Listar ganho</button>
 
-      {modalAberto === 'gasto' && (
+
+      {modalAberto === 'cadastrar-gasto' && (
         <Modal titulo={tipos.gasto.titulo} onFechar={fecharModal}>
           <TransacaoForm rotulo={tipos.gasto.rotulo} categorias={tipos.gasto.categorias}
             onSalvar={adicionarGasto} onFechar={fecharModal} />
         </Modal>
       )}
 
-      {modalAberto === 'ganho' && (
+      {modalAberto === 'cadastrar-ganho' && (
         <Modal titulo={tipos.ganho.titulo} onFechar={fecharModal}>
           <TransacaoForm rotulo={tipos.ganho.rotulo} categorias={tipos.ganho.categorias}
             onSalvar={adicionarGanho} onFechar={fecharModal} />
         </Modal>
       )}
+
+      {
+        modalAberto === 'listar-ganho' && (
+          <Modal titulo={tipos.ganho.titulo} onFechar={fecharModal}>
+            <TransacaoLista itens={ganhoList} onFechar={fecharModal}/>
+          </Modal>
+        )
+      }
+
+      {
+        modalAberto === 'listar-gasto' && (
+          <Modal titulo={tipos.gasto.titulo} onFechar={fecharModal}>
+            <TransacaoLista itens={gastoList} onFechar={fecharModal}/>
+          </Modal>
+        )
+      }
     </>
   )
 }
