@@ -1,5 +1,12 @@
 {
-  "gastos": [],
+  "gastos": [
+    {
+      "nome": "a",
+      "valor": "1",
+      "categoria": "Alimentação",
+      "id": "31xXB0YBkaA"
+    }
+  ],
   "ganhos": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

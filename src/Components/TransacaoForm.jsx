@@ -8,7 +8,7 @@ export default function TransacaoForm({rotulo, categorias, onSalvar, onFechar, i
 
     function salvar(event) {
         event.preventDefault();
-        onSalvar(nome, valor, categoria);
+        onSalvar({nome, valor, categoria});
 
         setNome('');
         setValor('');
