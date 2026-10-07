@@ -1,13 +1,13 @@
 
 const api_url = 'http://localhost:3001';
 
-export async function ListarTransacoes(tipo) {
+export async function listarTransacoes(tipo) {
     const resposta = await fetch(`${api_url}/${tipo}`);
 
     return resposta.json();
 }
 
-export async function AdicionarTransacao(tipo, dados) {
+export async function adicionarTransacao(tipo, dados) {
     const resposta = await fetch(
         `${api_url}/${tipo}`,
         {
@@ -20,7 +20,7 @@ export async function AdicionarTransacao(tipo, dados) {
     return resposta.json();
 }
 
-export async function RemoverTransacao(tipo, id) {
+export async function removerTransacao(tipo, id) {
     await fetch(
         `${api_url}/${tipo}/${id}`,
         {
@@ -29,7 +29,7 @@ export async function RemoverTransacao(tipo, id) {
     )
 }
 
-export async function AtualizarTransacao(tipo, id, dados) {
+export async function atualizarTransacao(tipo, id, dados) {
     const resposta = await fetch(
         `${api_url}/${tipo}/${id}`,
         {

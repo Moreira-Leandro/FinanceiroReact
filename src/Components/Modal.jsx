@@ -2,7 +2,7 @@
 export default function Modal({titulo, onFechar, children}) {
     return (
     <>
-      <div className="modal d-block" tabIndex={-1}>
+      <div className="modal d-flex justify-content-center align-items-center" tabIndex={-1}>
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
