@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-export default function TransacaoForm({rotulo, categorias, onSalvar, onFechar, inicial}) {
+export default function TransacaoForm({id = 'transacao-form', rotulo, categorias, onSalvar, inicial}) {
     const [nome, setNome] = useState(inicial?.nome ?? '');
     const [valor, setValor] = useState(inicial?.valor ?? '');
     const [categoria, setCategoria] = useState(inicial?.categoria ?? '');
@@ -16,8 +16,7 @@ export default function TransacaoForm({rotulo, categorias, onSalvar, onFechar, i
     }
 
     return (
-        <form onSubmit={salvar}>
-        <div className="modal-body">
+        <form id={id} onSubmit={salvar}>
             <label className="form-label">Nome do {rotulo}</label>
             <input className="form-control mb-2" required
             value={nome} onChange={(e) => setNome(e.target.value)} />
@@ -34,12 +33,6 @@ export default function TransacaoForm({rotulo, categorias, onSalvar, onFechar, i
                 <option key={cat} value={cat}>{cat}</option>
             ))}
             </select>
-        </div>
-
-        <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={onFechar}>Fechar</button>
-            <button type="submit" className="btn btn-primary">Salvar</button>
-        </div>
         </form>
     );
 }

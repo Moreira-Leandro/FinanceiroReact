@@ -1,8 +1,7 @@
 
-export default function TransacaoLista({itens, onFechar, removerTransacao, onEditar}) {    
+export default function TransacaoLista({itens, removerTransacao, onEditar}) {    
     return (
         <>
-            <div className="modal-body">
                 <ul className="list-group">
                     {itens.map((item) => (
                         <li key={item.id} className="list-group-item d-flex justify-content-between">
@@ -13,10 +12,6 @@ export default function TransacaoLista({itens, onFechar, removerTransacao, onEdi
                         </li>
                     ))}
                 </ul>
-            </div>
-            <div className="modal-footer">
-                <button type="button" onClick={onFechar}>Fechar</button>
-            </div>
         </>
     )
 }
