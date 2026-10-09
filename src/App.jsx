@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useTransacao } from './hooks/useTransacao'
 import { tipos } from './constants/tipos'
-import TransacaoModal from './components/TansacaoModal';
+import TransacaoModal from './components/TransacaoModal';
+import TransacaoForm from './components/TransacaoForm';
+import TransacaoLista from './components/TransacaoLista';
 
 
 function App() {

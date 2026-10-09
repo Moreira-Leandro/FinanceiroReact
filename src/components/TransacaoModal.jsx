@@ -13,8 +13,21 @@ export default function TransacaoModal({modal, transacaos, itemEditado, onEditar
     const transacao = transacaos[tipo];
     const titulo = `${titulos[acao]} ${config.rotulo}`
 
+    const ehFormulario = acao !== 'listar';
+
+    const footer = (
+    <>
+        <button type="button" className="btn btn-secondary" onClick={onFechar}>Fechar</button>
+        {ehFormulario && (
+        <button type="submit" form="transacao-form" className="btn btn-primary">Salvar</button>
+        )}
+    </>
+    );
+
     return (
-        <Modal titulo={titulo} onFechar={onFechar}>
+        <Modal titulo={titulo} onFechar={onFechar} footer={footer
+            
+        }>
             {
                 acao === 'listar' && (
                     <TransacaoLista 
