@@ -4,6 +4,8 @@ import { tipos } from './constants/tipos'
 import TransacaoModal from './components/TransacaoModal';
 import TransacaoForm from './components/TransacaoForm';
 import TransacaoLista from './components/TransacaoLista';
+import NavBar from './components/nav-bar/NavBar';
+import Dashboard from './components/dashboard/Dashboard';
 
 
 function App() {
@@ -21,25 +23,23 @@ function App() {
 
   const tipoAtual = modal?.tipo;
 
-  function editar(item) {
+  function editar(tipo, item) {
     setItemEditando(item);
-    abrir('editar', tipoAtual);
+    abrir('editar', tipo);
   }
 
   async function salvarEdicao(dados) {
     await transacaos[tipoAtual].atualizar(itemEditando?.id, dados);
     setItemEditando(null);
-    abrir('listar', tipoAtual);
+    fecharModal();
   }
 
 
   return (
     <>
-      <button onClick={() => abrir('cadastrar', 'gasto')}>Adicionar gasto</button>
-      <button onClick={() => abrir('cadastrar', 'ganho')}>Adicionar ganho</button>
-      <button onClick={() => abrir('listar', 'gasto')}>Listar gasto</button>
-      <button onClick={() => abrir('listar', 'ganho')}>Listar ganho</button>
-
+    <NavBar abrir={abrir}/>
+    <Dashboard transacao={transacaos} onEditar={editar}/>
+    
       <TransacaoModal 
         modal={modal}
         transacaos={transacaos}

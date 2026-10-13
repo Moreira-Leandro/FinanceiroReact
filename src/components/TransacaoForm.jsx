@@ -18,11 +18,11 @@ export default function TransacaoForm({id = 'transacao-form', rotulo, categorias
     return (
         <form id={id} onSubmit={salvar}>
             <label className="form-label">Nome do {rotulo}</label>
-            <input className="form-control mb-2" required
+            <input className="form-control" required
             value={nome} onChange={(e) => setNome(e.target.value)} />
 
             <label className="form-label">Valor do {rotulo}</label>
-            <input className="form-control mb-2" type="number" step="0.01" required
+            <input className="form-control campo-valor" type="number" step="0.01" required
             value={valor} onChange={(e) => setValor(e.target.value)} />
 
             <label className="form-label">Categoria</label>
