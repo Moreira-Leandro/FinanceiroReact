@@ -17,9 +17,9 @@ export default function TransacaoModal({modal, transacaos, itemEditado, onEditar
 
     const footer = (
     <>
-        <button type="button" className="btn btn-secondary" onClick={onFechar}>Fechar</button>
+        <button type="button" className="btn btn-pilula btn-discreto" onClick={onFechar}>Fechar</button>
         {ehFormulario && (
-        <button type="submit" form="transacao-form" className="btn btn-primary">Salvar</button>
+        <button type="submit" form="transacao-form" className="btn btn-pilula btn-tinta">Salvar</button>
         )}
     </>
     );

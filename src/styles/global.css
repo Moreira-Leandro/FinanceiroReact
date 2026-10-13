@@ -1,0 +1,22 @@
+:root {
+  --fundo: #F1F3F8;
+  --superficie: #FFFFFF;
+  --tinta: #1B1F3B;
+  --apagado: #6B7091;
+  --linha: #E2E5EE;
+  --ganho: #14946A;
+  --ganho-claro: #E3F4EC;
+  --gasto: #D9435A;
+  --gasto-claro: #FBE7EA;
+
+  --fonte-titulo: 'Bricolage Grotesque', 'Inter', sans-serif;
+  --fonte-texto: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: var(--fonte-texto);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
